@@ -1,4 +1,9 @@
-all: assembler
+run: build run_command clean
+
+run_command: 
+	./assembler test 
+
+build: assembler
 
 assembler: assembler.o pre_assembler.o utils.o data_struct.o errors.o first_pass.o tables.o
 	gcc -ansi -Wall -pedantic -o assembler assembler.o pre_assembler.o utils.o data_struct.o errors.o first_pass.o tables.o
@@ -25,4 +30,4 @@ tables.o: tables.c tables.h errors.h
 	gcc -ansi -Wall -pedantic -c tables.c -o tables.o
 
 clean:
-	rm *.o *~ assembler *.am
+	rm -f *.o assembler *.am
